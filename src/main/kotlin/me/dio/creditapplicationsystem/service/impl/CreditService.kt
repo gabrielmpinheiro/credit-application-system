@@ -1,6 +1,7 @@
 package me.dio.creditapplicationsystem.service.impl
 
 import me.dio.creditapplicationsystem.entity.Credit
+import me.dio.creditapplicationsystem.exception.BusinessException
 import me.dio.creditapplicationsystem.repository.CreditRepository
 import me.dio.creditapplicationsystem.service.ICreditService
 import org.springframework.stereotype.Service
@@ -24,7 +25,7 @@ class CreditService(
     }
 
     override fun findByCreditCode(customerId: Long, creditCode: UUID): Credit {
-        val credit: Credit = this.creditRepository.findByCreditCode(creditCode) ?: throw RuntimeException("Credit code is invalid")
-        return if (credit.customer?.id == customerId) credit else throw RuntimeException("Contact admin")
+        val credit: Credit = this.creditRepository.findByCreditCode(creditCode) ?: throw BusinessException("Credit code is invalid")
+        return if (credit.customer?.id == customerId) credit else throw BusinessException("Contact admin")
     }
 }
