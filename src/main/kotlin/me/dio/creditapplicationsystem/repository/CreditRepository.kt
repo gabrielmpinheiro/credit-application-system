@@ -11,10 +11,11 @@ interface CreditRepository: JpaRepository<Credit, Long> {
 
     fun findByCreditCode(creditCode: UUID): Credit?
     @Query(value="SELECT * FROM CREDIT WHERE ID = ?1", nativeQuery = true)
-    fun findAllByCustomer(customerId: Long): List<Credit>
+    fun findAllByCustomerId(customerId: Long): List<Credit>
 }
 
 /*
 * Essa interface torna possível que o Modelo de Crédito possa
 * utilizar os métodos do JPA.
 * */
+
